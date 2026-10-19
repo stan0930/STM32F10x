@@ -1,0 +1,30 @@
+# Keil build output
+**/Objects/
+**/Listings/
+**/Debug/
+**/Release/
+**/build/
+**/Build/
+
+# Keil user interface state and backups
+*.uvguix.*
+*.uvgui.*
+*.uvopt
+*.uvgui
+*.uvprojx.bak
+*.uvoptx.bak
+*.bak
+*.tmp
+*.~*
+
+# Editor and operating-system caches
+.DS_Store
+Thumbs.db
+Desktop.ini
+**/.vscode/ipch/
+**/.cache/
+
+# Local credentials
+.env
+.env.*
+!.env.example
