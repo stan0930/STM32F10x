@@ -5,6 +5,7 @@
             "includePath": [
                 "c:\\Users\\stan0930\\Desktop\\STM32\\led_register\\Start",
                 "c:\\Users\\stan0930\\Desktop\\STM32\\led_register\\User",
+                "c:\\Users\\stan0930\\Desktop\\STM32\\led_register\\hardware\\LED",
                 "E:\\Keil5\\ARM\\ARMCC\\include",
                 "E:\\Keil5\\ARM\\ARMCC\\include\\rw"
             ],
