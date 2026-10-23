@@ -1,3 +1,6 @@
+# Shared rules for all STM32 projects in this repository.
+# Keep source files, Drivers/, RTE/, *.ioc and *.uvprojx in Git.
+
 # Keil build output
 **/Objects/
 **/Listings/
@@ -5,6 +8,10 @@
 **/Release/
 **/build/
 **/Build/
+
+# CubeMX/Keil project-specific output directories
+/CubeMXproject_hal/MDK-ARM/CubeMXproject_hal/
+/Key_hal/MDK-ARM/Key_hal/
 
 # Keil/ARMCC generated files
 *.o
@@ -18,7 +25,8 @@
 *.lst
 *.htm
 *.lnp
-*.sct
+# Do not ignore *.sct globally: custom linker scripts may be required.
+# Auto-generated scatter files are covered by output directories above.
 *.dep
 *.iex
 *.scvd
@@ -41,7 +49,6 @@
 Thumbs.db
 Desktop.ini
 **/.vscode/
-**/.vscode/ipch/
 **/.cache/
 
 # Local credentials
