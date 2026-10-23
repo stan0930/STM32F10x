@@ -19,6 +19,8 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "gpio.h"
+#include "led.h"
+
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -88,12 +90,20 @@ int main(void)
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
 
+  LED leds[3] = {LED1_Pin, LED2_Pin, LED3_Pin};
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+    for (uint8_t i = 0; i < 3; i++)
+    {
+      LED_On(leds[i]);
+      HAL_Delay(500);
+      LED_Off(leds[i]); 
+    }
+    
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

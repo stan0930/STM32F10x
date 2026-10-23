@@ -6,10 +6,29 @@
 **/build/
 **/Build/
 
+# Keil/ARMCC generated files
+*.o
+*.d
+*.crf
+*.axf
+*.elf
+*.hex
+*.bin
+*.map
+*.lst
+*.htm
+*.lnp
+*.sct
+*.dep
+*.iex
+*.scvd
+**/DebugConfig/
+
 # Keil user interface state and backups
 *.uvguix.*
 *.uvgui.*
 *.uvopt
+*.uvoptx
 *.uvgui
 *.uvprojx.bak
 *.uvoptx.bak
@@ -21,6 +40,7 @@
 .DS_Store
 Thumbs.db
 Desktop.ini
+**/.vscode/
 **/.vscode/ipch/
 **/.cache/
 
