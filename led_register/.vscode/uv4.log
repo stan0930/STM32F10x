@@ -1,4 +1,3 @@
-*** Using Compiler 'V5.06 update 7 (build 960)', folder: 'E:\Keil5\ARM\ARMCC\Bin'
-Build target 'Target 1'
-".\Objects\led_register.axf" - 0 Error(s), 0 Warning(s).
-Build Time Elapsed:  00:00:00
+Load "c:\\Users\\stan0930\\Desktop\\STM32\\led_register\\Objects\\led_register.axf" 
+Erase Done.Programming Done.Verify OK.Application running ...
+Flash Load finished at 08:38:51

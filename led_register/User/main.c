@@ -8,9 +8,9 @@ void Delay_s(uint16_t s);
 
 int main(){
 
-		//1.初始化LED
+
 		LED_Init();
-		//2.初始化按键
+
 		key_init();
 
 		while(1)
