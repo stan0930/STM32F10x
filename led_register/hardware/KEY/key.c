@@ -99,7 +99,8 @@ void EXTI9_5_IRQHandler(void)
 
         if ((GPIOF->IDR & GPIO_IDR_IDR8) == 0)
         {
-            LED_Toggle(LED3);
+            //LED_Toggle(LED3);
+            isOn = ~isOn;
         }
     }
 }

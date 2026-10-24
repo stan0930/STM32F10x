@@ -215,9 +215,8 @@ void EXTI15_10_IRQHandler(void)
 /* USER CODE BEGIN 1 */
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
-  //先判断是否是EXTI10传来的请求
-  //HAL_GPIO_EXTI_IRQHandler(KEY3_Pin) 里已经帮我们做了PR清除中断请求
-  if(GPIO_Pin == GPIO_PIN_10)//或者写if(GPIO_Pin == KEY_Pin)
+ 
+  if(GPIO_Pin == GPIO_PIN_10)
   {
 
     HAL_Delay(10);

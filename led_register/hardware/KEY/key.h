@@ -3,8 +3,8 @@
 
 #include "stm32f10x.h"
 #include "delay.h"
+extern uint8_t isOn;
 
-//初始化
 void key_init(void);
 
 
