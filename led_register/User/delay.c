@@ -1,20 +1,20 @@
 #include "delay.h"
 
-// å»¶æ—¶å‡½æ•°ï¼Œå¾®ç§’ä½œä¸ºå•ä½ï¼Œåˆ©ç”¨ç³»ç»Ÿæ»´ç­”å®šæ—¶å™¨ï¼Œ72MHzï¼Œä¸€æ¬¡æ»´ç­” 1/72 us
+
 void Delay_us(uint16_t us)
 {
-    // 1. è£…è½½ä¸€ä¸ªè®¡æ•°å€¼ï¼Œ72 * us
+    //1.×°ÔØÒ»¸ö¼ÆÊýÖµ£¬72*us
     SysTick->LOAD = 72 * us;
 
-    // 2. é…ç½®ï¼Œä½¿ç”¨ç³»ç»Ÿæ—¶é’Ÿ (1)ï¼Œè®¡æ•°ç»“æŸä¸äº§ç”Ÿä¸­æ–­ (0)ï¼Œä½¿èƒ½å®šæ—¶å™¨ (1)
+    //ÅäÖÃ£¬Ê¹ÓÃÏµÍ³Ê±ÖÓ£¨1£©£¬¼ÆÊý½áÊø²»²úÉúÖÐ¶Ï£¨0£©£¬Ê¹ÄÜ¶¨Ê±Æ÷£¨1£©
     SysTick->CTRL = 0x05;
-
-    // 3. ç­‰å¾…è®¡æ•°å€¼å˜ä¸º 0ï¼Œåˆ¤æ–­ COUNTFLAG æ˜¯å¦ä¸º 1
-    while ((SysTick->CTRL & SysTick_CTRL_COUNTFLAG) == 0)
+    //µÈ´ýSysTick¶¨Ê±Æ÷¼ÆÊýµ½0
+    while ((SysTick->CTRL & SysTick_CTRL_COUNTFLAG) == 0 
+            &&(SysTick->CTRL & SysTick_CTRL_ENABLE))
     {
     }
 
-    // 4. å…³é—­å®šæ—¶å™¨
+    //¹Ø±ÕSysTick¶¨Ê±Æ÷
     SysTick->CTRL &= ~SysTick_CTRL_ENABLE;
 }
 

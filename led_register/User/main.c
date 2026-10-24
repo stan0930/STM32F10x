@@ -28,6 +28,11 @@ int main(){
 					Delay_ms(500);
 					LED_Off(leds[i]);
 					Delay_ms(500);
+					if (isOn == 0)
+					{
+						break;
+					}
+					
 				}
 			}else{
 				LED_OffAll(leds,size);
