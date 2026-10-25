@@ -3,10 +3,11 @@
 
 #include "stm32f10x.h"
 #include "delay.h"
-extern uint8_t isOn;
+extern volatile uint8_t isOn;
 
 void key_init(void);
 
 
 
 #endif /* __KEY_H__ */
+
