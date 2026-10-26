@@ -6,6 +6,9 @@
 uint8_t buffer[100]={0};
 uint8_t size = 0;
 
+//定义标志位
+uint8_t isOver = 0;
+
 int main(){
 	USART_Init();
 	USART_SendChar('a');
@@ -15,13 +18,13 @@ int main(){
 	USART_SendString(str,strlen(str));
 
 	while(1){
-		// USART_SendChar('a');
-		// USART_SendChar('t');
-		// Delay_ms(1000);
-
-		//接收字符串，再发回来
-		USART_ReceiveString(buffer,&size);
-		USART_SendString(buffer,size);
+		if (isOver)
+		{
+			USART_SendString(buffer,size);
+			isOver = 0;
+			size = 0;
+		}
+		
 	}
 
 }
