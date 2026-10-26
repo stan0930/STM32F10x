@@ -12,6 +12,8 @@
 # CubeMX/Keil project-specific output directories
 /CubeMXproject_hal/MDK-ARM/CubeMXproject_hal/
 /Key_hal/MDK-ARM/Key_hal/
+/2Key_hal/MDK-ARM/2Key_hal/
+/usart_rolling_hal/MDK-ARM/usart_rolling_hal/
 
 # Keil/ARMCC generated files
 *.o
