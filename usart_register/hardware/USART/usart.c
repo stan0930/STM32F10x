@@ -28,7 +28,13 @@ void USART_SendChar(uint8_t ch){
     USART1->DR = ch;
 }
 uint8_t USART_ReceiveChar(void){
-    while((USART1->SR & USART_SR_RXNE) == 0){};
+    while((USART1->SR & USART_SR_RXNE) == 0){
+        //我们增加判断空闲帧的条件
+        if((USART1->SR & USART_SR_IDLE)){
+            //字符串接收完毕
+            return '\0';
+        }
+    }
     return USART1->DR;
 }
 
@@ -41,19 +47,16 @@ void USART_ReceiveString(uint8_t buffer[],uint8_t *size){
     //定义一个变量，用来保存已经接收到的字符个数
     uint8_t i = 0;
 
-    //外层循环，不停的接收下一个字符
-    while(1){
-        //内层循环，判断当前数据帧是否接收完毕
-        while((USART1->SR & USART_SR_RXNE) == 0){
-            //额外增加一个条件，判断当前是否检测到空闲帧
-            if((USART1->SR & USART_SR_IDLE) != 0){
-                //字符串接收完毕
-                *size = i;
-                return;
-            }
-        }
-        //接收当前字符
-        buffer[i] = USART1->DR;
+    while((USART1->SR & USART_SR_IDLE) == 0)
+    {
+        buffer[i] = USART_ReceiveChar();
         i++;
     }
+    //清除IDLE
+
+    //可写可不写USART1->SR;
+    USART1->DR;
+
+    *size = --i;
+    
 }
