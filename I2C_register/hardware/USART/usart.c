@@ -1,6 +1,9 @@
 #include "usart.h"
 #include <stdio.h>
 
+uint8_t buffer[100] = {0};
+volatile uint8_t size = 0;
+volatile uint8_t isOver = 0;
 
 void USART_Init(void){
     RCC->APB2ENR |= RCC_APB2ENR_IOPAEN;
@@ -80,8 +83,11 @@ void USART1_IRQHandler(void){
     //先判断中断类型,通过状态位
     if(USART1->SR & USART_SR_RXNE){
         //接收完成一个字符
-        buffer[size] = USART1->DR;
-        size++;
+        uint8_t data = (uint8_t)USART1->DR;
+        if (size < sizeof(buffer))
+        {
+            buffer[size++] = data;
+        }
     }
     else if(USART1->SR & USART_SR_IDLE){
         //字符串接收完毕

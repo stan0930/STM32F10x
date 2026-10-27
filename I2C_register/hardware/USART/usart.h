@@ -3,8 +3,8 @@
 
 #include "stm32f10x.h"
 extern uint8_t buffer[100];
-extern uint8_t size;
-extern uint8_t isOver;
+extern volatile uint8_t size;
+extern volatile uint8_t isOver;
 
 void USART_Init(void);
 void USART_SendChar(uint8_t ch);

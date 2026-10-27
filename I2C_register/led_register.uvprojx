@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>.\Start;.\User;.\hardware\LED;.\hardware\KEY;.\hardware\USART</IncludePath>
+              <IncludePath>.\Start;.\User;.\hardware\LED;.\hardware\KEY;.\hardware\USART;.\hardware\I2C;.\Interface\EEPROM</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -473,6 +473,36 @@
               <FileName>usart.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\hardware\USART\usart.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Hardware/I2C</GroupName>
+          <Files>
+            <File>
+              <FileName>I2C.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\hardware\I2C\I2C.c</FilePath>
+            </File>
+            <File>
+              <FileName>I2C.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\hardware\I2C\I2C.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Interface/EEPROM</GroupName>
+          <Files>
+            <File>
+              <FileName>m24c02.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Interface\EEPROM\m24c02.c</FilePath>
+            </File>
+            <File>
+              <FileName>m24c02.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Interface\EEPROM\m24c02.h</FilePath>
             </File>
           </Files>
         </Group>
