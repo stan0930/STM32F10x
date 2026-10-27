@@ -16,6 +16,7 @@ int main(){
 
 	uint8_t str[] = "hello world";
 	USART_SendString(str,strlen(str));
+	printf("hello world");
 
 	while(1){
 		if (isOver)

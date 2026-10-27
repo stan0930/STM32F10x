@@ -1,4 +1,6 @@
 #include "usart.h"
+#include <stdio.h>
+
 
 void USART_Init(void){
     RCC->APB2ENR |= RCC_APB2ENR_IOPAEN;
@@ -91,4 +93,11 @@ void USART1_IRQHandler(void){
         // size = 0;
         isOver = 1;
     }
+}
+
+//÷ÿ–¥fputc
+int fputc(int ch,FILE *file){
+
+    USART_SendChar(ch);
+    return ch;
 }

@@ -74,7 +74,9 @@ int main(void){
     MX_GPIO_Init();
     MX_USART1_UART_Init();
     /* 当接收到1000个字符或者碰到空闲帧, 则接收结束 */
-HAL_UARTEx_ReceiveToIdle_IT(&huart1, rxBuff, 1000);
+    HAL_UARTEx_ReceiveToIdle_IT(&huart1, rxBuff, 1000);
+
+    printf("Hello World!\n");
     while (1);
 }
 
