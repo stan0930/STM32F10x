@@ -152,7 +152,7 @@ void I2C_SendByte(uint8_t byte)
 }
 
 //主机从EEPROM接收一个字节
-uint8_t I2C_ReceiveByte(void)
+uint8_t I2C_ReadByte(void)
 {
     //定义一个变量，用来保存接收的数据
     uint8_t data = 0;

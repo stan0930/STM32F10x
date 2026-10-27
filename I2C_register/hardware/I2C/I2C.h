@@ -36,13 +36,13 @@ void I2C_Ack(void);
 void I2C_Nack(void);
 
 //主机等待从设备发来应答信号
-uint8_t I2C_Wait4Ack(void);
+uint16_t I2C_Wait4Ack(void);
 
 //主机发送一个字节
 void I2C_SendByte(uint8_t byte);
 
 //主机从EEPROM接收一个字节
-uint8_t I2C_ReceiveByte(void);
+uint8_t I2C_ReadByte(void);
 
 
 #endif
