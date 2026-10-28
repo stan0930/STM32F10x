@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>.\Start;.\User;.\User\hardware\UTIL;.\User\hardware\LED;.\User\hardware\KEY;.\User\hardware\USART;.\User\hardware\I2C;.\Interface\EEPROM</IncludePath>
+              <IncludePath>.\Start;.\User;.\User\hardware\UTIL;.\User\hardware\LED;.\User\hardware\KEY;.\User\hardware\USART;.\User\hardware\I2C;.\User\hardware\m24co2</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -497,12 +497,12 @@
             <File>
               <FileName>m24c02.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Interface\EEPROM\m24c02.c</FilePath>
+              <FilePath>.\User\hardware\m24co2\m24c02.c</FilePath>
             </File>
             <File>
               <FileName>m24c02.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\Interface\EEPROM\m24c02.h</FilePath>
+              <FilePath>.\User\hardware\m24co2\m24c02.h</FilePath>
             </File>
           </Files>
         </Group>
