@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>.\Start;.\User;.\hardware\LED;.\hardware\KEY;.\hardware\USART;.\hardware\I2C;.\Interface\EEPROM</IncludePath>
+              <IncludePath>.\Start;.\User;.\User\hardware\UTIL;.\User\hardware\LED;.\User\hardware\KEY;.\User\hardware\USART;.\User\hardware\I2C;.\Interface\EEPROM</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -427,7 +427,7 @@
             <File>
               <FileName>delay.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\User\delay.c</FilePath>
+              <FilePath>.\User\hardware\UTIL\delay.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -437,12 +437,12 @@
             <File>
               <FileName>led.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\hardware\LED\led.c</FilePath>
+              <FilePath>.\User\hardware\LED\led.c</FilePath>
             </File>
             <File>
               <FileName>led.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\hardware\LED\led.h</FilePath>
+              <FilePath>.\User\hardware\LED\led.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -452,27 +452,27 @@
             <File>
               <FileName>key.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\hardware\KEY\key.c</FilePath>
+              <FilePath>.\User\hardware\KEY\key.c</FilePath>
             </File>
             <File>
               <FileName>key.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\hardware\KEY\key.h</FilePath>
+              <FilePath>.\User\hardware\KEY\key.h</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
-          <GroupName>Hardware/UASRT</GroupName>
+          <GroupName>Hardware/USART</GroupName>
           <Files>
             <File>
               <FileName>usart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\hardware\USART\usart.c</FilePath>
+              <FilePath>.\User\hardware\USART\usart.c</FilePath>
             </File>
             <File>
               <FileName>usart.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\hardware\USART\usart.h</FilePath>
+              <FilePath>.\User\hardware\USART\usart.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -482,12 +482,12 @@
             <File>
               <FileName>I2C.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\hardware\I2C\I2C.c</FilePath>
+              <FilePath>.\User\hardware\I2C\I2C.c</FilePath>
             </File>
             <File>
               <FileName>I2C.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\hardware\I2C\I2C.h</FilePath>
+              <FilePath>.\User\hardware\I2C\I2C.h</FilePath>
             </File>
           </Files>
         </Group>

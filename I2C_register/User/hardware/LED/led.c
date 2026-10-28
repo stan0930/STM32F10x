@@ -1,6 +1,6 @@
 #include "led.h"
 
-void LED_Init(void)
+void Dri_LED_Init(void)
 {
 
 	RCC->APB2ENR |= RCC_APB2ENR_IOPAEN;
@@ -16,43 +16,43 @@ void LED_Init(void)
 	GPIOA->CRH |= GPIO_CRH_MODE8;
 
 
-	LED_Off(LED1);
-	LED_Off(LED2);
-	LED_Off(LED3);
+	Dri_LED_Off(LED1);
+	Dri_LED_Off(LED2);
+	Dri_LED_Off(LED3);
 }
 
-void LED_On(uint16_t led)
+void Dri_LED_On(uint16_t led)
 {
     GPIOA->ODR &= ~led;
 }
-void LED_Off(uint16_t led)
+void Dri_LED_Off(uint16_t led)
 {
     GPIOA->ODR |= led;
 }
 
-void LED_Toggle(uint16_t led)
+void Dri_LED_Toggle(uint16_t led)
 {
     if((GPIOA->IDR & led) == 0)
     {
-        LED_Off(led);
+        Dri_LED_Off(led);
     }
     else
     {
-        LED_On(led);
+        Dri_LED_On(led);
     }
 }
 
-void LED_OnAll(uint16_t leds[],uint8_t size)
+void Dri_LED_OnAll(uint16_t leds[],uint8_t size)
 {
     for(uint8_t i = 0;i<size;i++)
     {
-        LED_On(leds[i]);
+        Dri_LED_On(leds[i]);
     }
 }
-void LED_OffAll(uint16_t leds[],uint8_t size)
+void Dri_LED_OffAll(uint16_t leds[],uint8_t size)
 {
     for(uint8_t i = 0;i<size;i++)
     {
-        LED_Off(leds[i]);
+        Dri_LED_Off(leds[i]);
     }
 }

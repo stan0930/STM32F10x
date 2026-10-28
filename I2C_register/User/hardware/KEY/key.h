@@ -5,7 +5,7 @@
 #include "delay.h"
 extern volatile uint8_t isOn;
 
-void key_init(void);
+void Dri_KEY_Init(void);
 
 
 

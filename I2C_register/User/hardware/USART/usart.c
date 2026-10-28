@@ -5,7 +5,7 @@ uint8_t buffer[100] = {0};
 volatile uint8_t size = 0;
 volatile uint8_t isOver = 0;
 
-void USART_Init(void){
+void Dri_USART_Init(void){
     RCC->APB2ENR |= RCC_APB2ENR_IOPAEN;
     RCC->APB2ENR |= RCC_APB2ENR_USART1EN;
 
@@ -39,12 +39,12 @@ void USART_Init(void){
 
 
 }
-void USART_SendChar(uint8_t ch){
+void Dri_USART_SendChar(uint8_t ch){
     while((USART1->SR & USART_SR_TXE) == 0){};
     USART1->DR = ch;
 }
 
-uint8_t USART_ReceiveChar(void){
+uint8_t Dri_USART_ReceiveChar(void){
     while((USART1->SR & USART_SR_RXNE) == 0){
         //我们增加判断空闲帧的条件
         if((USART1->SR & USART_SR_IDLE)){
@@ -55,18 +55,18 @@ uint8_t USART_ReceiveChar(void){
     return USART1->DR;
 }
 
-void USART_SendString(uint8_t *str,uint8_t size){
+void Dri_USART_SendString(uint8_t *str,uint8_t size){
     for(uint8_t i=0;i<size;i++){
-        USART_SendChar(str[i]);
+        Dri_USART_SendChar(str[i]);
     }
 }
-void USART_ReceiveString(uint8_t buffer[],uint8_t *size){
+void Dri_USART_ReceiveString(uint8_t buffer[],uint8_t *size){
     //定义一个变量，用来保存已经接收到的字符个数
     uint8_t i = 0;
 
     while((USART1->SR & USART_SR_IDLE) == 0)//最合理的判断结束的就是IDLE位
     {
-        buffer[i] = USART_ReceiveChar();
+        buffer[i] = Dri_USART_ReceiveChar();
         i++;
     }
     //清除IDLE
@@ -94,7 +94,7 @@ void USART1_IRQHandler(void){
         //清除IDLE
         USART1->DR;
         //直接发送字符串到电脑
-        //USART_SendString(buffer,size);核心逻辑不在中断服务程序中，而是通过标志位，在主函数中调用
+        //Dri_USART_SendString(buffer,size);核心逻辑不在中断服务程序中，而是通过标志位，在主函数中调用
         //清 0 size
         // size = 0;
         isOver = 1;
@@ -104,6 +104,6 @@ void USART1_IRQHandler(void){
 //重写fputc
 int fputc(int ch,FILE *file){
 
-    USART_SendChar(ch);
+    Dri_USART_SendChar(ch);
     return ch;
 }

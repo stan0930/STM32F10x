@@ -1,7 +1,7 @@
 #include "delay.h"
 
 
-void Delay_us(uint16_t us)
+void Dri_Delay_Us(uint16_t us)
 {
     SysTick->LOAD = 72 * us;
 
@@ -14,10 +14,18 @@ void Delay_us(uint16_t us)
     SysTick->CTRL &= ~SysTick_CTRL_ENABLE;
 }
 
-void Delay_ms(uint16_t ms)
+void Dri_Delay_Ms(uint16_t ms)
 {
     while (ms--)
     {
-        Delay_us(1000);
+        Dri_Delay_Us(1000);
+    }
+}
+
+void Dri_Delay_S(uint16_t s)
+{
+    while (s--)
+    {
+        Dri_Delay_Ms(1000);
     }
 }

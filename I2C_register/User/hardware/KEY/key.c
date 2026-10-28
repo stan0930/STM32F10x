@@ -3,7 +3,7 @@
 
 volatile uint8_t isOn = 0;
 
-void key_init(void)
+void Dri_KEY_Init(void)
 {
     
     RCC->APB2ENR |= RCC_APB2ENR_IOPFEN;
@@ -43,11 +43,11 @@ void EXTI15_10_IRQHandler(void)
     if (EXTI->PR & EXTI_PR_PR10)
     {
         EXTI->PR = EXTI_PR_PR10;
-        Delay_ms(10);
+        Dri_Delay_Ms(10);
 
         if (GPIOF->IDR & GPIO_IDR_IDR10)
         {
-            LED_Toggle(LED1);
+            Dri_LED_Toggle(LED1);
         }
     }
 }
@@ -57,11 +57,11 @@ void EXTI9_5_IRQHandler(void)
     if (EXTI->PR & EXTI_PR_PR8)
     {
         EXTI->PR = EXTI_PR_PR8;
-        Delay_ms(10);
+        Dri_Delay_Ms(10);
 
         if ((GPIOF->IDR & GPIO_IDR_IDR8) == 0)
         {
-            //LED_Toggle(LED3);
+            //Dri_LED_Toggle(LED3);
             isOn = !isOn;
         }
     }

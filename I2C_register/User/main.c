@@ -13,22 +13,22 @@ int main(void)
     uint8_t textLength = (uint8_t)(sizeof(txText) - 1);
     uint8_t readLength;
 
-    USART_Init();
-    M24C02_Init();
-    Delay_ms(10);
+    Dri_USART_Init();
+    Int_M24C02_Init();
+    Dri_Delay_Ms(10);
 
     printf("\r\n=== M24C02 read/write test ===\r\n");
     printf("WARNING: overwrites 0x00 and 0x10-0x17.\r\n");
 
-    M24C02_WriteByte(0x00, txChar);
-    rxChar = M24C02_ReadByte(0x00);
+    Int_M24C02_WriteByte(0x00, txChar);
+    rxChar = Int_M24C02_ReadByte(0x00);
     printf("Single: TX=0x%02X, RX=0x%02X, %s\r\n",
            (unsigned int)txChar, (unsigned int)rxChar,
            rxChar == txChar ? "PASS" : "FAIL");
 
     /* M24C02 page writes must stay within one 8-byte page. */
-    M24C02_WriteBytes(0x10, txText, textLength);
-    readLength = M24C02_ReadBytes(0x10, rxText, textLength);
+    Int_M24C02_WriteBytes(0x10, txText, textLength);
+    readLength = Int_M24C02_ReadBytes(0x10, rxText, textLength);
     rxText[textLength] = '\0';
 
     printf("Multi: TX=\"%s\", RX=\"%s\"\r\n",

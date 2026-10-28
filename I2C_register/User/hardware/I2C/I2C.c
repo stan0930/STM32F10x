@@ -1,7 +1,7 @@
 #include "I2C.h"
 
 //初始化
-void I2C_Init(void)
+void Dri_I2C_Init(void)
 {
     //1.配时钟
     RCC->APB2ENR |= RCC_APB2ENR_IOPBEN;
@@ -20,7 +20,7 @@ void I2C_Init(void)
 }
 
 //发出起始信号
-void I2C_Start(void)
+void Dri_I2C_Start(void)
 {
     /* Change SDA while SCL is low before a repeated START. */
     SCL_LOW;
@@ -40,7 +40,7 @@ void I2C_Start(void)
 }
 
 //发出停止信号
-void I2C_Stop(void)
+void Dri_I2C_Stop(void)
 {
     /* Establish SDA low before raising SCL for STOP. */
     SCL_LOW;
@@ -56,54 +56,29 @@ void I2C_Stop(void)
     I2C_DELAY;//延时10us，确保SDA拉高
 }
 
-//主机发出应答信号
-void I2C_Ack(void)
+//主机发送应答：ACK 为低电平，NACK 为高电平
+void Dri_I2C_SendAck(uint8_t ack)
 {
-    //1.SCL初始的时候先拉低
     SCL_LOW;
-    SDA_HIGH;
-    I2C_DELAY;//延时10us，确保SDA拉高
-
-    //2.SCL保持不变，SDA拉低,输出应答 0是应答 1是非应答
-    SDA_LOW;
-    I2C_DELAY;//延时10us，确保SDA拉低
-
-    //3.SDA保持不变，SCL拉高，开始数据线上信号采样
+    if (ack == ACK)
+    {
+        SDA_LOW;
+    }
+    else
+    {
+        SDA_HIGH;
+    }
+    I2C_DELAY;
     SCL_HIGH;
-    I2C_DELAY;//延时10us，确保SDA拉高
-
-    //4.SDA保持不变，SCL拉低，开始数据线上信号采样
+    I2C_DELAY;
     SCL_LOW;
-    I2C_DELAY;//延时10us，确保SDA拉低
-
-    //5.SDA拉高，释放数据总线
+    I2C_DELAY;
     SDA_HIGH;
-    I2C_DELAY;//延时10us，确保SDA拉高
-
-
-
-}
-
-//主机发出非应答信号
-void I2C_Nack(void)
-{
-    //1.SCL初始的时候先拉低
-    SCL_LOW;
-    SDA_HIGH;
-    I2C_DELAY;//延时10us，确保SDA拉高
-
-    //2.SDA保持不变，SCL拉高，输出应答 0是应答 1是非应答
-    SCL_HIGH;
-    I2C_DELAY;//延时10us，确保SDA拉高
-
-    //3.SDA保持不变，SCL拉低，开始数据线上信号采样
-    SCL_LOW;
-    I2C_DELAY;//延时10us，确保SDA拉低
-
+    I2C_DELAY;
 }
 
 //主机等待从设备发来应答信号
-uint16_t I2C_Wait4Ack(void)
+uint16_t Dri_I2C_ReceiveAck(void)
 {
     //1.SDA拉高，SCL拉低，释放数据总线
     SCL_LOW;
@@ -126,7 +101,7 @@ uint16_t I2C_Wait4Ack(void)
 }
 
 //主机发送一个字节
-void I2C_SendByte(uint8_t byte)
+void Dri_I2C_SendByte(uint8_t byte)
 {
     for (uint8_t i = 0; i < 8; i++)
     {
@@ -162,7 +137,7 @@ void I2C_SendByte(uint8_t byte)
 }
 
 //主机从EEPROM接收一个字节
-uint8_t I2C_ReadByte(void)
+uint8_t Dri_I2C_ReceiveByte(void)
 {
     /* Release the open-drain SDA output so the EEPROM can drive it. */
     SCL_LOW;
