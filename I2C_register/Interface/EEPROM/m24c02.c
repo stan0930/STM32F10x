@@ -34,7 +34,7 @@ void M24C02_WriteByte(uint8_t innerAddr, uint8_t byte)
     }
 
     //延迟等待写入周期结束
-    Delay_Ms(5);
+    Delay_ms(5);
 }
 
 //从EEPROM读取一个字节
@@ -57,7 +57,7 @@ uint8_t M24C02_ReadByte(uint8_t innerAddr)
     //8.等待应答
     I2C_Wait4Ack();
     //9.接收数据
-    uint8_t byte = I2C_ReceiveByte();
+    uint8_t byte = I2C_ReadByte();
     //10.发送非应答信号
     I2C_Nack();
     //11.发送停止信号
@@ -93,12 +93,17 @@ void M24C02_WriteBytes(uint8_t innerAddr, uint8_t *bytes, uint8_t size)
     }
 
     //延迟等待写入周期结束
-    Delay_Ms(5);
+    Delay_ms(5);
 }
 
 //连续读取多个字节（页读）
 uint8_t M24C02_ReadBytes(uint8_t innerAddr, uint8_t *buffer, uint8_t size)
 {
+    if (size == 0)
+    {
+        return 0;
+    }
+
     //1.发送起始信号
     I2C_Start();
     //2.发送假写地址
@@ -129,5 +134,6 @@ uint8_t M24C02_ReadBytes(uint8_t innerAddr, uint8_t *buffer, uint8_t size)
         }
     }
     //11.发送停止信号
-    I2C_Stop();  
+    I2C_Stop();
+    return size;
 }

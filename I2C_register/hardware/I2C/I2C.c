@@ -10,6 +10,8 @@ void I2C_Init(void)
     GPIOB->CRH |= (GPIO_CRH_MODE10 | GPIO_CRH_MODE11);
     GPIOB->CRH &= ~(GPIO_CRH_CNF10_1 | GPIO_CRH_CNF11_1);
     GPIOB->CRH |= (GPIO_CRH_CNF10_0 | GPIO_CRH_CNF11_0);
+    SDA_HIGH;
+    SCL_HIGH;
 
 
 
@@ -20,6 +22,10 @@ void I2C_Init(void)
 //发出起始信号
 void I2C_Start(void)
 {
+    /* Change SDA while SCL is low before a repeated START. */
+    SCL_LOW;
+    SDA_HIGH;
+    I2C_DELAY;
     // 1.SCL拉高，SDA拉高
     SCL_HIGH;
     SDA_HIGH;
@@ -36,6 +42,10 @@ void I2C_Start(void)
 //发出停止信号
 void I2C_Stop(void)
 {
+    /* Establish SDA low before raising SCL for STOP. */
+    SCL_LOW;
+    SDA_LOW;
+    I2C_DELAY;
     // 1.SCL拉高，SDA拉低
     SCL_HIGH;
     SDA_LOW;
@@ -154,6 +164,10 @@ void I2C_SendByte(uint8_t byte)
 //主机从EEPROM接收一个字节
 uint8_t I2C_ReadByte(void)
 {
+    /* Release the open-drain SDA output so the EEPROM can drive it. */
+    SCL_LOW;
+    SDA_HIGH;
+    I2C_DELAY;
     //定义一个变量，用来保存接收的数据
     uint8_t data = 0;
 
