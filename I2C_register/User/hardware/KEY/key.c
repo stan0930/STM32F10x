@@ -2,6 +2,8 @@
 #include "led.h"
 
 volatile uint8_t isOn = 0;
+// KEY3（PF10）按�?事件标志：中�?发生时置1，主�?�?处理后清0
+volatile uint8_t key3_event = 0;
 
 void Dri_KEY_Init(void)
 {
@@ -40,15 +42,14 @@ void Dri_KEY_Init(void)
 
 void EXTI15_10_IRQHandler(void)
 {
+    // PF10对应EXTI10，EXTI10~EXTI15共用这个�?�?入口
     if (EXTI->PR & EXTI_PR_PR10)
     {
+        // �?1清除EXTI10挂起标志
         EXTI->PR = EXTI_PR_PR10;
-        Dri_Delay_Ms(10);
 
-        if (GPIOF->IDR & GPIO_IDR_IDR10)
-        {
-            Dri_LED_Toggle(LED1);
-        }
+        // �?�?�?�?记录按键事件，EEPROM读写放在主循�?�?完成
+        key3_event = 1;
     }
 }
 
@@ -61,7 +62,7 @@ void EXTI9_5_IRQHandler(void)
 
         if ((GPIOF->IDR & GPIO_IDR_IDR8) == 0)
         {
-            //Dri_LED_Toggle(LED3);
+        //Dri_LED_Toggle(LED3);
             isOn = !isOn;
         }
     }
