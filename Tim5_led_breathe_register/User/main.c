@@ -6,7 +6,6 @@
 
 int main(void){
     Dri_Tim5_Init();
-
     Dri_Tim5_Start();
 
     uint8_t duty = 1;
