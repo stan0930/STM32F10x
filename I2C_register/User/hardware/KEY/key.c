@@ -1,8 +1,8 @@
-#include "key.h"
+﻿#include "key.h"
 #include "led.h"
 
 volatile uint8_t isOn = 0;
-// KEY3（PF10）按�?事件标志：中�?发生时置1，主�?�?处理后清0
+// KEY3（PF10）按键事件标志：中断发生时置 1，主循环处理后清 0
 volatile uint8_t key3_event = 0;
 
 void Dri_KEY_Init(void)
@@ -42,16 +42,27 @@ void Dri_KEY_Init(void)
 
 void EXTI15_10_IRQHandler(void)
 {
-    // PF10对应EXTI10，EXTI10~EXTI15共用这个�?�?入口
+    // PF10 对应 EXTI10，EXTI10~EXTI15 共用这个中断入口
     if (EXTI->PR & EXTI_PR_PR10)
     {
-        // �?1清除EXTI10挂起标志
+        // 写 1 清除 EXTI10 挂起标志
         EXTI->PR = EXTI_PR_PR10;
 
-        // �?�?�?�?记录按键事件，EEPROM读写放在主循�?�?完成
+        // 中断中只记录按键事件，EEPROM 读写放在主循环完成
         key3_event = 1;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
 
 void EXTI9_5_IRQHandler(void)
 {
