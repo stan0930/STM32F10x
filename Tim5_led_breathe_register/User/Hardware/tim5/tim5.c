@@ -37,7 +37,7 @@ void Dri_Tim5_Init(void){
     //时基单元的配置
     TIM5->PSC = 7200-1;
     TIM5->CNT = 0;
-    TIM5->ARR = 100-1;
+    TIM5->ARR = 100-1;//自动重装载寄存器
 
     //设置Tim5的CH2的捕获比较寄存器中的值
     TIM5->CCR2 = 60;
