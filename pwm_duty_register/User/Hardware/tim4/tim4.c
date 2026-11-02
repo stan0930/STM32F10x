@@ -53,8 +53,8 @@ void Dri_Tim4_Init(void){
     TIM4 -> ARR = UINT16_MAX;
 
     //当前Tim4可以接受触发信号，因此Tim4是从定时器，出发后需要做复位指令。因此需要设置SMR中的TS和SMS
-    //触发信号来源的设置 触发信号来源于TI1FP1 - 101
-    TIM4->SMCR |= (TIM_SMCR_TS_2 | TIM_SMCR_SMS_0);
+    //触发信号来源的设置 触发信号来源于TI1FP1  TS- 101
+    TIM4->SMCR |= (TIM_SMCR_TS_2 | TIM_SMCR_TS_0);
     TIM4->SMCR &=~ TIM_SMCR_TS_1;
 
     //从模式选择：触发信号到来时CNT复位 SMS - 100
