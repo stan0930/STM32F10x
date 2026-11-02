@@ -439,6 +439,11 @@
               <FileType>5</FileType>
               <FilePath>.\User\Hardware\tim1\tim1.h</FilePath>
             </File>
+            <File>
+              <FileName>tim1_IT.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\User\Hardware\tim1\tim1_IT.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

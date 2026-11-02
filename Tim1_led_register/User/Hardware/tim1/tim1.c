@@ -11,9 +11,9 @@ void Dri_Tim1_Init(void){
     //TIM1 设置
     //不需要自动重装载的预加载使能：向上计数
     TIM1 -> CR1 &=~ (TIM_CR1_ARPE | TIM_CR1_DIR);
-    //这只单脉冲模式
+    //设置单脉冲模式
     TIM1 -> CR1 |= TIM_CR1_OPM;
-    //这只TIM1 CH1 是比较输出模式
+    //设置TIM1 CH1 是比较输出模式
     TIM1 -> CCMR1 &=~ TIM_CCMR1_CC1S;
     //设置TIM1 CH1 PWM1输出模式
     TIM1->CCMR1 |= (TIM_CCMR1_OC1M_2 | TIM_CCMR1_OC1M_1);
