@@ -61,6 +61,13 @@ int fputc(int ch, FILE *f)
   HAL_UART_Transmit(&huart1, (uint8_t *)&ch, 1, 0xFFFF);
   return ch;
 }
+uint8_t rxCpltFlag = 0;
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
+  if(huart == &huart1){
+    rxCpltFlag = 1;
+  }
+}
 /* USER CODE END 0 */
 
 /**
@@ -95,15 +102,22 @@ int main(void)
   MX_DMA_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
-  printf("从memory到usart1......\n");
-  uint8_t str[] = "hello stm32";
-  HAL_UART_Transmit_DMA(&huart1, str, strlen(str));
+  //printf("从memory到usart1......\n");
+  //uint8_t str[] = "hello stm32";
+  //HAL_UART_Transmit_DMA(&huart1, str, strlen(str));
+  printf("从usart1到memory......\n");
+  uint8_t arr[11] = {0};
+  HAL_UART_Receive_DMA(&huart1, (uint8_t *)arr, sizeof(arr));
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+    if(rxCpltFlag){
+      printf("接收完成，数据为：%s\n", arr);
+      rxCpltFlag = 0;
+    }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
