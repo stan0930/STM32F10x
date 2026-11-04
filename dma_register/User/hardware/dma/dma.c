@@ -80,11 +80,11 @@ void DMA1_Channel5_IRQHandler(void){
     }
 }
 
-void DMA1_Channel4_IRQHandler(void)
-{
-    if (DMA1->ISR & DMA_ISR_TCIF4)
-    {
-        DMA1_Channel4->CCR &= ~DMA_CCR4_EN;
-        DMA1->IFCR = DMA_IFCR_CTCIF4;
-    }
-}
+// void DMA1_Channel4_IRQHandler(void)
+// {
+//     if (DMA1->ISR & DMA_ISR_TCIF4)
+//     {
+//         DMA1_Channel4->CCR &= ~DMA_CCR4_EN;
+//         DMA1->IFCR = DMA_IFCR_CTCIF4;
+//     }
+// }
