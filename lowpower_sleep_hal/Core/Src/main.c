@@ -117,6 +117,8 @@ int main(void)
 
   //挂起systick定时器
   HAL_SuspendTick();
+  //HAL_PWR_EnableSleepOnExit();置1
+  //HAL_PWR_DisableSleepOnExit();置0
   HAL_PWR_EnterSLEEPMode(0,PWR_SLEEPENTRY_WFI);
   //恢复systick定时器
   HAL_ResumeTick();

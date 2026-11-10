@@ -20,6 +20,10 @@ int main(void){
     Dri_Delay_Ms(1000);
     printf("睡眠模式已进入\n");
     Dri_Delay_Ms(1);
+
+
+    //当中断服务程序执行结束之后继续睡眠
+    SCB->SCR |= SCB_SCR_SLEEPONEXIT;
     //进入睡眠模式
     enter_sleep();
 
