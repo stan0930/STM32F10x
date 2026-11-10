@@ -1,3 +1,4 @@
+﻿//USART1：PA9发送、PA10接收，115200、8N1；轮询接收不要和RXNE中断同时读DR。
 #ifndef USART_H
 #define USART_H
 

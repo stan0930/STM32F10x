@@ -1,3 +1,4 @@
+ï»¿//ç¡¬ä»¶I2C2ï¼šPB10=SCLï¼ŒPB11=SDAï¼Œéœ€è¦å¤–éƒ¨ä¸Šæ‹‰ï¼Œè®¾å¤‡åœ°å€ç”¨SendDevå‘é€ã€‚
 #ifndef I2C_H
 #define I2C_H
 
@@ -9,31 +10,28 @@
 #define ACK 0
 #define NACK 1
 
-
-//³õÊ¼»¯
+//åˆå§‹åŒ–
 void Dri_I2C_Init(void);
 
-//·¢³öÆğÊ¼ĞÅºÅ
+//å‘å‡ºèµ·å§‹ä¿¡å·
 uint8_t Dri_I2C_Start(void);
 
-//·¢³öÍ£Ö¹ĞÅºÅ
+//å‘å‡ºåœæ­¢ä¿¡å·
 void Dri_I2C_Stop(void);
 
-//Ö÷»ú·¢ËÍ ACK(0) »ò NACK(1)
+//ä¸»æœºå‘é€ ACK(0) æˆ– NACK(1)
 void Dri_I2C_SendAck(uint8_t ack);
 
-//Ö÷»úµÈ´ı´ÓÉè±¸·¢À´Ó¦´ğĞÅºÅ
+//ä¸»æœºç­‰å¾…ä»è®¾å¤‡å‘æ¥åº”ç­”ä¿¡å·
 uint16_t Dri_I2C_ReceiveAck(void);
 
-//Ö÷»ú·¢ËÍÒ»¸ö×Ö½Ú
+//ä¸»æœºå‘é€ä¸€ä¸ªå­—èŠ‚
 uint8_t Dri_I2C_SendByte(uint8_t byte);
 
-//Ö÷»ú·¢ËÍÉè±¸µØÖ·+¶ÁĞ´±íÊ¾
+//ä¸»æœºå‘é€è®¾å¤‡åœ°å€+è¯»å†™è¡¨ç¤º
 uint8_t Dri_I2C_SendDev(uint8_t dev);
 
-//Ö÷»ú´ÓEEPROM½ÓÊÕÒ»¸ö×Ö½Ú
+//ä¸»æœºä»EEPROMæ¥æ”¶ä¸€ä¸ªå­—èŠ‚
 uint8_t Dri_I2C_ReceiveByte(void);
 
-
 #endif
-

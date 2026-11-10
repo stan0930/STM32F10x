@@ -1,3 +1,4 @@
+﻿//LED：PA0/PA1/PA8，低电平点亮；PA1、PA8不能同时用作普通LED和PWM。
 #ifndef __LED_H__
 #define __LED_H__
 
@@ -12,15 +13,9 @@ void Dri_LED_Init(void);
 void Dri_LED_On(uint16_t led);
 void Dri_LED_Off(uint16_t led);
 
-
 void Dri_LED_Toggle(uint16_t led);
-
 
 void Dri_LED_OnAll(uint16_t leds[],uint8_t size);
 void Dri_LED_OffAll(uint16_t leds[],uint8_t size);
 
-
-
-
 #endif /* __LED_H__ */
-

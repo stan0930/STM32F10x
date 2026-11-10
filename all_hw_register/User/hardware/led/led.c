@@ -1,10 +1,10 @@
+﻿//LED：PA0/PA1/PA8，低电平点亮；PA1、PA8不能同时用作普通LED和PWM。
 #include "led.h"
 
 void Dri_LED_Init(void)
 {
 
 	RCC->APB2ENR |= RCC_APB2ENR_IOPAEN;
-
 
 	GPIOA->CRL &= ~GPIO_CRL_CNF0;
 	GPIOA->CRL |= GPIO_CRL_MODE0;
@@ -14,7 +14,6 @@ void Dri_LED_Init(void)
 
 	GPIOA->CRH &= ~GPIO_CRH_CNF8;
 	GPIOA->CRH |= GPIO_CRH_MODE8;
-
 
 	Dri_LED_Off(LED1);
 	Dri_LED_Off(LED2);

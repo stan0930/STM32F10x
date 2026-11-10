@@ -1,3 +1,4 @@
+﻿//USART1：PA9发送、PA10接收，115200、8N1；轮询接收不要和RXNE中断同时读DR。
 #include "usart.h"
 #include <stdio.h>
 
@@ -16,27 +17,25 @@ void Dri_USART_Init(void){
     GPIOA->CRH &=~GPIO_CRH_MODE10;
     GPIOA->CRH |=GPIO_CRH_CNF10_0;
     GPIOA->CRH &=~GPIO_CRH_CNF10_1;
-    //3.��������
-    //3.1����������
+    //3.串口配置
+    //3.1波特率设置
     USART1->BRR = 0x271;
-    //3.2�շ�ʹ�ܺ�ģ��ʹ��
+    //3.2收发使能和模块使能
     USART1->CR1 |= USART_CR1_RE;
     USART1->CR1 |= USART_CR1_TE;
     USART1->CR1 |= USART_CR1_UE;
-    //3.3�������ã���������֡��ʽ
+    //3.3其他配置，设置数据帧格式
     USART1->CR1 &=~USART_CR1_M;
     USART1->CR1 &=~USART_CR1_PCE;
     USART1->CR2 &=~USART_CR2_STOP;
-    //3.4 �����ж�ʹ�ܣ����յ�
+    //3.4 开启中断使能，接收的
     USART1->CR1 |= USART_CR1_RXNEIE;
     USART1->CR1 |= USART_CR1_IDLEIE;
 
-    //4.NVIC����
+    //4.NVIC配置
     NVIC_SetPriorityGrouping(3);
     NVIC_SetPriority(USART1_IRQn,3);
     NVIC_EnableIRQ(USART1_IRQn);
-
-
 
 }
 void Dri_USART_SendChar(uint8_t ch){
@@ -46,9 +45,9 @@ void Dri_USART_SendChar(uint8_t ch){
 
 uint8_t Dri_USART_ReceiveChar(void){
     while((USART1->SR & USART_SR_RXNE) == 0){
-        //���������жϿ���֡������
+        //我们增加判断空闲帧的条件
         if((USART1->SR & USART_SR_IDLE)){
-            //�ַ����������
+            //字符串接收完毕
             return '\0';
         }
     }
@@ -61,28 +60,28 @@ void Dri_USART_SendString(uint8_t *str,uint8_t size){
     }
 }
 void Dri_USART_ReceiveString(uint8_t buffer[],uint8_t *size){
-    //����һ�����������������Ѿ����յ����ַ�����
+    //定义一个变量，用来保存已经接收到的字符个数
     uint8_t i = 0;
 
-    while((USART1->SR & USART_SR_IDLE) == 0)//��������жϽ����ľ���IDLEλ
+    while((USART1->SR & USART_SR_IDLE) == 0)//最合理的判断结束的就是IDLE位
     {
         buffer[i] = Dri_USART_ReceiveChar();
         i++;
     }
-    //���IDLE
+    //清除IDLE
 
-    //��д�ɲ�дUSART1->SR;
+    //可写可不写USART1->SR;
     USART1->DR;
 
     *size = --i;
     
 }
 
-//�жϷ������
+//中断服务程序
 void USART1_IRQHandler(void){
-    //���ж��ж�����,ͨ��״̬λ
+    //先判断中断类型,通过状态位
     if(USART1->SR & USART_SR_RXNE){
-        //�������һ���ַ�
+        //接收完成一个字符
         uint8_t data = (uint8_t)USART1->DR;
         if (size < sizeof(buffer))
         {
@@ -90,18 +89,18 @@ void USART1_IRQHandler(void){
         }
     }
     else if(USART1->SR & USART_SR_IDLE){
-        //�ַ����������
-        //���IDLE
+        //字符串接收完毕
+        //清除IDLE
         USART1->DR;
-        //ֱ�ӷ����ַ���������
-        //Dri_USART_SendString(buffer,size);�����߼������жϷ�������У�����ͨ����־λ�����������е���
-        //�� 0 size
+        //直接发送字符串到电脑
+        //Dri_USART_SendString(buffer,size);核心逻辑不在中断服务程序中，而是通过标志位，在主函数中调用
+        //清 0 size
         // size = 0;
         isOver = 1;
     }
 }
 
-//��дfputc
+//重写fputc
 int fputc(int ch,FILE *file){
 
     Dri_USART_SendChar(ch);

@@ -1,4 +1,5 @@
-﻿#include "key.h"
+﻿//按键：PF10上升沿，PF8下降沿，事件标志在主循环处理。
+#include "key.h"
 #include "led.h"
 
 volatile uint8_t isOn = 0;
@@ -23,8 +24,6 @@ void Dri_KEY_Init(void)
 
     AFIO->EXTICR[2] |= AFIO_EXTICR3_EXTI10_PF;
     AFIO->EXTICR[2] |= AFIO_EXTICR3_EXTI8_PF;
-
-
 
     EXTI->RTSR |= EXTI_RTSR_TR10;
     EXTI->IMR |= EXTI_IMR_MR10;
@@ -52,17 +51,6 @@ void EXTI15_10_IRQHandler(void)
         key3_event = 1;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
 
 void EXTI9_5_IRQHandler(void)
 {

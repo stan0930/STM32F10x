@@ -1,60 +1,60 @@
+ï»¿//W25Q32ï¼šå…ˆè¯»IDï¼Œå†æ“¦é™¤ã€å†™å…¥ã€è¯»å›ï¼›é¡µå†™æœ€å¤š256å­—èŠ‚ï¼Œè¯»å†™æ•°ç»„éƒ½è¦è¶³å¤Ÿå¤§ã€‚
 #include "w25q32.h"
 #include "spi.h"
-
 
 void Int_W25Q32_Init(void){
     Dri_SPI_init();
 }
 void Int_W25Q32_ReadId(uint8_t *mid, uint16_t *did){
     Dri_SPI_Start();
-    Dri_SPI_SwapByte(0x9f);//·¢ËÍ9fÃüÁî£¬¶ÁÈ¡ID
-    *mid = Dri_SPI_SwapByte(0xFF);//·şÎñÉÌID
-    uint8_t did1 = Dri_SPI_SwapByte(0x00);//Éè±¸ID1
-    uint8_t did2 = Dri_SPI_SwapByte(0x00);//Éè±¸ID2
+    Dri_SPI_SwapByte(0x9f);//å‘é€9få‘½ä»¤ï¼Œè¯»å–ID
+    *mid = Dri_SPI_SwapByte(0xFF);//æœåŠ¡å•†ID
+    uint8_t did1 = Dri_SPI_SwapByte(0x00);//è®¾å¤‡ID1
+    uint8_t did2 = Dri_SPI_SwapByte(0x00);//è®¾å¤‡ID2
     *did = (did1<<8) | did2;
     Dri_SPI_Stop();
 }
 void Int_W25Q32_WriteEnable(void){
     Dri_SPI_Start();
-    Dri_SPI_SwapByte(0x06);//·¢ËÍ06ÃüÁî£¬Ê¹ÄÜĞ´Èë
+    Dri_SPI_SwapByte(0x06);//å‘é€06å‘½ä»¤ï¼Œä½¿èƒ½å†™å…¥
     Dri_SPI_Stop();
 }
 void Int_W25Q32_WaitNotBusy(void){
     Dri_SPI_Start();
-    Dri_SPI_SwapByte(0x05);//·¢ËÍffÃüÁî£¬¶ÁÈ¡×´Ì¬¼Ä´æÆ÷
-    while (Dri_SPI_SwapByte(0xFF) & 0x01);//¿ÉÒÔÒ»Ö±¶ÁÈ¡×´Ì¬¼Ä´æÆ÷£¬Ö±µ½Ğ´ÈëÍê³ÉÎ»Îª0
+    Dri_SPI_SwapByte(0x05);//å‘é€05å‘½ä»¤ï¼Œè¯»å–çŠ¶æ€å¯„å­˜å™¨
+    while (Dri_SPI_SwapByte(0xFF) & 0x01);//å¯ä»¥ä¸€ç›´è¯»å–çŠ¶æ€å¯„å­˜å™¨ï¼Œç›´åˆ°å†™å…¥å®Œæˆä½ä¸º0
     Dri_SPI_Stop();
 }
 void Int_W25Q32_WriteDisanable(void){
     Dri_SPI_Start();
-    Dri_SPI_SwapByte(0x04);//·¢ËÍ04ÃüÁî£¬¹Ø±ÕĞ´Ê¹ÄÜ
+    Dri_SPI_SwapByte(0x04);//å‘é€04å‘½ä»¤ï¼Œå…³é—­å†™ä½¿èƒ½
     Dri_SPI_Stop();
 }
 void Int_W25Q32_SectorErase(uint8_t block, uint8_t sector){
-    //1.µÈ´ı¿ÕÏĞ
+    //1.ç­‰å¾…ç©ºé—²
     Int_W25Q32_WaitNotBusy();
-    //2.Ğ´Ê¹ÄÜ
+    //2.å†™ä½¿èƒ½
     Int_W25Q32_WriteEnable();
-    //3.¿ªÊ¼½øĞĞ¶Î²Á³ı
+    //3.å¼€å§‹è¿›è¡Œæ®µæ“¦é™¤
     Dri_SPI_Start();
     Dri_SPI_SwapByte(0x20);
     Dri_SPI_SwapByte(block);
-    Dri_SPI_SwapByte(sector<<4);//·¢ËÍÉÈÇøºÅ
+    Dri_SPI_SwapByte(sector<<4);//å‘é€æ‰‡åŒºå·
     Dri_SPI_SwapByte(0x00);
     Dri_SPI_Stop();
-    //4.¹Ø±ÕĞ´Ê¹ÄÜ
+    //4.å…³é—­å†™ä½¿èƒ½
     Int_W25Q32_WriteDisanable();
 }
 void Int_W25Q32_WritePage(uint8_t block, uint8_t sector, uint8_t page, 
 uint8_t *data, uint16_t len){
-    //1.µÈ´ı¿ÕÏĞ
+    //1.ç­‰å¾…ç©ºé—²
     Int_W25Q32_WaitNotBusy();
-    //2.Ğ´Ê¹ÄÜ
+    //2.å†™ä½¿èƒ½
     Int_W25Q32_WriteEnable();
     Dri_SPI_Start();
-    Dri_SPI_SwapByte(0x02);//·¢ËÍ02ÃüÁî£¬Ğ´ÈëÒ³
+    Dri_SPI_SwapByte(0x02);//å‘é€02å‘½ä»¤ï¼Œå†™å…¥é¡µ
     Dri_SPI_SwapByte(block);
-    Dri_SPI_SwapByte(sector<<4 | page);//·¢ËÍÉÈÇøºÅ
+    Dri_SPI_SwapByte(sector<<4 | page);//å‘é€æ‰‡åŒºå·
     Dri_SPI_SwapByte(0x00);
     for (uint16_t i = 0; i < len; i++){
         Dri_SPI_SwapByte(data[i]);
@@ -67,9 +67,9 @@ void Int_W25Q32_Read(uint8_t block, uint8_t sector, uint8_t page,
 uint8_t *data, uint16_t len){
     Int_W25Q32_WaitNotBusy();
     Dri_SPI_Start();
-    Dri_SPI_SwapByte(0x03);//·¢ËÍ03ÃüÁî£¬¶ÁÈ¡Ò³
+    Dri_SPI_SwapByte(0x03);//å‘é€03å‘½ä»¤ï¼Œè¯»å–é¡µ
     Dri_SPI_SwapByte(block);
-    Dri_SPI_SwapByte(sector<<4 | page);//·¢ËÍÉÈÇøºÅ
+    Dri_SPI_SwapByte(sector<<4 | page);//å‘é€æ‰‡åŒºå·
     Dri_SPI_SwapByte(0x00);
     for (uint16_t i = 0; i < len; i++){
         data[i] = Dri_SPI_SwapByte(0xFF);

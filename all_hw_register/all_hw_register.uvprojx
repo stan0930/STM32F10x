@@ -337,7 +337,7 @@
               <MiscControls />
               <Define />
               <Undefine />
-              <IncludePath>.\Start; .\User;.\User\hardware\UTIL;.\User\hardware\USART;.\User\hardware\adc_single;.\User\hardware\adc_dma;.\User\hardware\dma_usart;.\User\hardware\i2c;.\User\hardware\eeprom_m24c02;.\User\hardware\key;.\User\hardware\led;.\User\hardware\pwm_cycle_tim4;.\User\hardware\pwm_cycle_tim5;.\User\hardware\pwm_duty_tim4;.\User\hardware\pwm_duty_tim5;.\User\hardware\spi_soft;.\User\hardware\spi;.\User\hardware\w25q32;.\User\hardware\tim1;.\User\hardware\tim5_breathe;.\User\hardware\tim6</IncludePath>
+              <IncludePath>.\Start;.\User;.\User\hardware\adc1;.\User\hardware\dma;.\User\hardware\i2c;.\User\hardware\key;.\User\hardware\led;.\User\hardware\m24c02;.\User\hardware\spi;.\User\hardware\tim1;.\User\hardware\tim4;.\User\hardware\tim5;.\User\hardware\tim6;.\User\hardware\USART;.\User\hardware\UTIL;.\User\hardware\w25q32</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -424,17 +424,167 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>Hardware/UTIL</GroupName>
+          <GroupName>Hardware/adc1</GroupName>
           <Files>
             <File>
-              <FileName>delay.c</FileName>
+              <FileName>adc1.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\User\hardware\UTIL\delay.c</FilePath>
+              <FilePath>.\User\hardware\adc1\adc1.c</FilePath>
             </File>
             <File>
-              <FileName>delay.h</FileName>
+              <FileName>adc1.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\User\hardware\UTIL\delay.h</FilePath>
+              <FilePath>.\User\hardware\adc1\adc1.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Hardware/dma</GroupName>
+          <Files>
+            <File>
+              <FileName>dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\User\hardware\dma\dma.c</FilePath>
+            </File>
+            <File>
+              <FileName>dma.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\User\hardware\dma\dma.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Hardware/i2c</GroupName>
+          <Files>
+            <File>
+              <FileName>I2C.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\User\hardware\i2c\I2C.c</FilePath>
+            </File>
+            <File>
+              <FileName>I2C.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\User\hardware\i2c\I2C.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Hardware/key</GroupName>
+          <Files>
+            <File>
+              <FileName>key.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\User\hardware\key\key.c</FilePath>
+            </File>
+            <File>
+              <FileName>key.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\User\hardware\key\key.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Hardware/led</GroupName>
+          <Files>
+            <File>
+              <FileName>led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\User\hardware\led\led.c</FilePath>
+            </File>
+            <File>
+              <FileName>led.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\User\hardware\led\led.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Hardware/m24c02</GroupName>
+          <Files>
+            <File>
+              <FileName>m24c02.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\User\hardware\m24c02\m24c02.c</FilePath>
+            </File>
+            <File>
+              <FileName>m24c02.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\User\hardware\m24c02\m24c02.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Hardware/spi</GroupName>
+          <Files>
+            <File>
+              <FileName>spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\User\hardware\spi\spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>spi.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\User\hardware\spi\spi.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Hardware/tim1</GroupName>
+          <Files>
+            <File>
+              <FileName>tim1.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\User\hardware\tim1\tim1.c</FilePath>
+            </File>
+            <File>
+              <FileName>tim1.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\User\hardware\tim1\tim1.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Hardware/tim4</GroupName>
+          <Files>
+            <File>
+              <FileName>tim4.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\User\hardware\tim4\tim4.c</FilePath>
+            </File>
+            <File>
+              <FileName>tim4.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\User\hardware\tim4\tim4.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Hardware/tim5</GroupName>
+          <Files>
+            <File>
+              <FileName>tim5.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\User\hardware\tim5\tim5.c</FilePath>
+            </File>
+            <File>
+              <FileName>tim5.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\User\hardware\tim5\tim5.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Hardware/tim6</GroupName>
+          <Files>
+            <File>
+              <FileName>tim6.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\User\hardware\tim6\tim6.c</FilePath>
+            </File>
+            <File>
+              <FileName>tim6.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\User\hardware\tim6\tim6.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -454,17 +604,17 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>Hardware/spi</GroupName>
+          <GroupName>Hardware/UTIL</GroupName>
           <Files>
             <File>
-              <FileName>spi.c</FileName>
+              <FileName>delay.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\User\hardware\spi\spi.c</FilePath>
+              <FilePath>.\User\hardware\UTIL\delay.c</FilePath>
             </File>
             <File>
-              <FileName>spi.h</FileName>
+              <FileName>delay.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\User\hardware\spi\spi.h</FilePath>
+              <FilePath>.\User\hardware\UTIL\delay.h</FilePath>
             </File>
           </Files>
         </Group>
