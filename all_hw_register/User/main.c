@@ -6,22 +6,27 @@
 #include "adc1.h"
 #include "tim5.h"
 
-volatile double v;
+// volatile double v;
+
+// int main(){
+//     Dri_USART_Init();
+//     Dri_ADC1_Init();
+//     Dri_ADC1_StartConvert();
+//     Dri_Tim5_Init();
+//     Dri_Tim5_Start();
+//     while (1)
+//     {
+//         double v = Dri_ADC1_ReadV();
+//         //Dri_Delay_Ms(100);
+//         //printf("v = %f\n", v);
+//         uint8_t duty = (uint8_t)(v / 3.3 * 100);
+//         //printf("duty = %d\n", duty);
+//         //Dri_Delay_Ms(100);
+//         Dri_Tim5_SetDuty(duty);
+//     }
+// }
+
 
 int main(){
-    Dri_USART_Init();
-    Dri_ADC1_Init();
-    Dri_ADC1_StartConvert();
-    Dri_Tim5_Init();
-    Dri_Tim5_Start();
-    while (1)
-    {
-        double v = Dri_ADC1_ReadV();
-        //Dri_Delay_Ms(100);
-        //printf("v = %f\n", v);
-        uint8_t duty = (uint8_t)(v / 3.3 * 100);
-        //printf("duty = %d\n", duty);
-        //Dri_Delay_Ms(100);
-        Dri_Tim5_SetDuty(duty);
-    }
+
 }

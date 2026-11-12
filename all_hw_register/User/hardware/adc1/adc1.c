@@ -128,7 +128,7 @@ void Dri_ADC1_DMA_Init(void){
     DMA1_Channel1->CCR |= DMA_CCR1_MSIZE_0;
     DMA1_Channel1->CCR &=~ DMA_CCR1_PSIZE;
     DMA1_Channel1->CCR |= DMA_CCR1_PSIZE_0;
-    //3.设置地址是否自增长 MINC-增长 PINC-不增长
+    //3.设置地址是否自增长 MINC-增长 PINC-不增长 
     DMA1_Channel1->CCR |= DMA_CCR1_MINC;
     DMA1_Channel1->CCR &=~ DMA_CCR1_PINC;
     //4.设置数据传输方向 0-从外设读（从ADC外设的DR里读）
