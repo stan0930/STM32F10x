@@ -25,6 +25,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "lcd.h"
+#include "lcd_game.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -92,8 +93,7 @@ int main(void)
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
   LCD_Init();
-  LCD_Clear(GREEN);
-  LCD_ShowString(0,0,"Hello World!",WHITE,BLACK,32,0);
+  LCD_GameInit();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -103,6 +103,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+    LCD_GameTask();
   }
   /* USER CODE END 3 */
 }

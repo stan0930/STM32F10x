@@ -394,6 +394,16 @@
           <GroupName>Application/User/Core</GroupName>
           <Files>
             <File>
+              <FileName>board_keys.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../Core/Src/board_keys.c</FilePath>
+            </File>
+            <File>
+              <FileName>board_keys.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>../Core/Inc/board_keys.h</FilePath>
+            </File>
+            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Core/Src/main.c</FilePath>
@@ -523,6 +533,46 @@
         <Group>
           <GroupName>lcd</GroupName>
           <Files>
+            <File>
+              <FileName>lcd_game.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lcd\lcd_game.c</FilePath>
+            </File>
+            <File>
+              <FileName>lcd_game.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\lcd\lcd_game.h</FilePath>
+            </File>
+            <File>
+              <FileName>meteor_game.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lcd\meteor_game.c</FilePath>
+            </File>
+            <File>
+              <FileName>meteor_game.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\lcd\meteor_game.h</FilePath>
+            </File>
+            <File>
+              <FileName>lcd_animation.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lcd\lcd_animation.c</FilePath>
+            </File>
+            <File>
+              <FileName>lcd_animation.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\lcd\lcd_animation.h</FilePath>
+            </File>
+            <File>
+              <FileName>space_cat_frames.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lcd\space_cat_frames.c</FilePath>
+            </File>
+            <File>
+              <FileName>space_cat_frames.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\lcd\space_cat_frames.h</FilePath>
+            </File>
             <File>
               <FileName>lcd.c</FileName>
               <FileType>1</FileType>

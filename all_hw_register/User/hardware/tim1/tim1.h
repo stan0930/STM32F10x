@@ -9,6 +9,7 @@ void Dri_Tim1_Start(void);
 void Dri_Tim1_IT_Init(void);    //原中断停机方案
 void Dri_Tim1_IT_Start(void);
 void Dri_Tim1_Stop(void);
+void Dri_Tim1_SetDuty(uint16_t duty);
 
 #endif
 
